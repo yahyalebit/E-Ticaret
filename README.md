@@ -29,14 +29,34 @@ Bu işlem, projeyi kendi veritabanınıza göre yeniden yapılandırıp sıfırd
 #### Örnek Connection String:
 ```csharp
 optionsBuilder.UseSqlServer("Server=YOUR_SERVER_NAME;Database=YOUR_DATABASE_NAME;Trusted_Connection=True;TrustServerCertificate=True;");
-
+```
 ###3️⃣ Package Manager Console Ayarlarını Yapın
 Migration işlemlerine başlamadan önce aşağıdaki adımları takip edin:
 
-Visual Studio'da View (Görünüm) menüsüne tıklayın.
+1.Visual Studio'da View (Görünüm) menüsüne tıklayın.
 
-Other Windows (Diğer Pencereler) seçeneğine gelin.
+2.Other Windows (Diğer Pencereler) seçeneğine gelin.
 
-Package Manager Console penceresini açın.
+3.Package Manager Console penceresini açın.
 
-Sağ üst köşede bulunan Default Project (Varsayılan Proje) kısmını ETicaretDataKatmanı olarak seçin.
+4.Sağ üst köşede bulunan Default Project (Varsayılan Proje) kısmını ETicaretDataKatmanı olarak seçin.
+
+###4️⃣ Migration Oluşturun ve Veritabanını Güncelleyin
+Aşağıdaki komutları sırasıyla Package Manager Console penceresine yazın:
+
+➤ Migration Oluştur
+```csharp
+Add-Migration [Bir İsim Verin]
+```
+➤ Veritabanını Güncelle
+```csharp
+Update-Database
+```
+📌 Ek Bilgiler
+Eğer hata alırsanız connection string ayarınızı ve SQL Server bağlantınızı kontrol edin.
+
+TrustServerCertificate=True; parametresi geliştirme ortamları için önerilir. Canlı ortama geçmeden önce bağlantı güvenliğinizi gözden geçirmeniz tavsiye edilir.
+
+Daha sonra yeni tablolar eklemek isterseniz yukarıdaki migration adımlarını tekrarlayarak yeni migrationlar oluşturabilirsiniz.
+
+
