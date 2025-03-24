@@ -52,7 +52,7 @@ Add-Migration [Bir İsim Verin]
 ```csharp
 Update-Database
 ```
-📌 Ek Bilgiler
+### 📌 Ek Bilgiler
 Eğer hata alırsanız connection string ayarınızı ve SQL Server bağlantınızı kontrol edin.
 
 TrustServerCertificate=True; parametresi geliştirme ortamları için önerilir. Canlı ortama geçmeden önce bağlantı güvenliğinizi gözden geçirmeniz tavsiye edilir.
