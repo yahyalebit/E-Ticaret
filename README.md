@@ -30,7 +30,7 @@ Bu işlem, projeyi kendi veritabanınıza göre yeniden yapılandırıp sıfırd
 ```csharp
 optionsBuilder.UseSqlServer("Server=YOUR_SERVER_NAME;Database=YOUR_DATABASE_NAME;Trusted_Connection=True;TrustServerCertificate=True;");
 ```
-###3️⃣ Package Manager Console Ayarlarını Yapın
+### 3️⃣ Package Manager Console Ayarlarını Yapın
 Migration işlemlerine başlamadan önce aşağıdaki adımları takip edin:
 
 1.Visual Studio'da View (Görünüm) menüsüne tıklayın.
@@ -41,7 +41,7 @@ Migration işlemlerine başlamadan önce aşağıdaki adımları takip edin:
 
 4.Sağ üst köşede bulunan Default Project (Varsayılan Proje) kısmını ETicaretDataKatmanı olarak seçin.
 
-###4️⃣ Migration Oluşturun ve Veritabanını Güncelleyin
+### 4️⃣ Migration Oluşturun ve Veritabanını Güncelleyin
 Aşağıdaki komutları sırasıyla Package Manager Console penceresine yazın:
 
 ➤ Migration Oluştur
