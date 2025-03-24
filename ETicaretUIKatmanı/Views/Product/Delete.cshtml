@@ -1,0 +1,34 @@
+﻿@model ETicaretDataKatmanı.Entities.Product
+@{
+    ViewData["Title"] = "Ürünü Sil";
+    Layout = "~/Views/Shared/_LeyoutAdmin.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="alert alert-danger text-center">
+                <h2 class="fw-bold">Ürünü Sil</h2>
+                <p><strong>@Model.Name</strong> adlı ürünü silmek istediğinizden emin misiniz?</p>
+            </div>
+            <div class="card shadow-lg">
+                <div class="card-body text-center">
+                    <img src="@Model.Image" alt="@Model.Name" class="img-fluid rounded mb-3 w-75" style="max-height: 250px; object-fit: cover;" />
+                    <h4 class="fw-bold">@Model.Name</h4>
+                    <p class="text-muted">@Model.Description</p>
+                    <hr />
+                    <p><strong>Fiyat:</strong> <span class="text-success">@Model.Price ₺</span></p>
+                    <p><strong>Stok:</strong> @Model.Stock adet</p>
+                    <p><strong>Kategori:</strong> @(Model.category != null ? Model.category.CategoryName : "Kategori Yok")</p>
+                </div>
+                <div class="card-footer text-center">
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="ProductId" />
+                        <button type="submit" class="btn btn-danger px-4 me-2">Sil</button>
+                        <a asp-action="Index" class="btn btn-secondary px-4">İptal</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿@model ETicaretDataKatmanı.Entities.Category
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_LeyoutAdmin.cshtml";
+}
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="alert alert-danger text-center">
+                <h2 class="fw-bold">Kategori Sil</h2>
+                <p><strong>@Model.CategoryName</strong> adlı Kategoriyi silmek istediğinizden emin misiniz?</p>
+            </div>
+            <div class="card shadow-lg">
+                <div class="card-body text-center">
+                    <h4 class="fw-bold">@Model.CategoryName</h4>
+                    <p class="text-muted">@Model.Description</p>
+                    <hr />
+                </div>
+                <div class="card-footer text-center">
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="CategoryId" />
+                        <button type="submit" class="btn btn-danger px-4 me-2">Sil</button>
+                        <a asp-action="Index" class="btn btn-secondary px-4">İptal</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+﻿@using ETicaretDataKatmanı.Identity
+@model IEnumerable<AppRole>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LeyoutAdmin.cshtml";
+}
+
+<h1>Roles</h1>
+<hr />
+
+<a asp-action="Create" class="btn btn-success mb-3">Create Role</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <button class="btn btn-danger btn-sm" onclick="confirmDelete(@item.Id)">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Silme Onayı İçin Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Silme Onayı</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bu rolü silmek istediğinizden emin misiniz?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                <a id="deleteConfirmButton" href="#" class="btn btn-danger">Sil</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmDelete(roleId) {
+        var deleteUrl = "/Role/Delete/" + roleId;
+        document.getElementById("deleteConfirmButton").setAttribute("href", deleteUrl);
+        var deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
+        deleteModal.show();
+    }
+</script>

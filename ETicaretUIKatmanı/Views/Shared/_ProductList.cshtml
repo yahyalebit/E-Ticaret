@@ -1,0 +1,29 @@
+﻿@using ETicaretDataKatmanı.Entities
+@model IEnumerable<Product>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@foreach (var product in Model)
+{
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <img src="@product.Image" class="card-img-top" alt="@product.Name">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="/Home/Details/@product.ProductId" class="text-decoration-none text-dark">
+                        @product.Name
+                    </a>
+                </h5>
+                <p class="card-text text-muted">@product.Description</p>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+                <small class="text-muted">@product.Price.ToString("c")</small>
+                <a class="btn btn-primary btn-sm" href="/Home/Details/@product.ProductId">
+                    <i class="fa-solid fa-arrow-right"></i> Ürün Detay
+                </a>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,37 @@
+﻿@using ETicaretDataKatmanı.ViewModels
+@model List<RoleAssignModel>
+@{
+    ViewData["Title"] = "RoleAssign";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewBag.Username</h1>
+<h2>Role Assign</h2>
+<hr />
+@using (Html.BeginForm("RoleAssign", "User", FormMethod.Post))
+{
+    <table class="table table-bordered table-striped w-25">
+        <thead>
+            <tr>
+                <th>Role Adı</th>
+                <th>Atanacak</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Model[i].Name
+                    </td>
+                    <td>
+                        <input type="checkbox" name="models[@i].HasAssign" value="true" @(Model[i].HasAssign ? "checked" : "") />
+                    </td>
+                    <input type="hidden" name="models[@i].Id" value="@Model[i].Id" />
+                    <input type="hidden" name="models[@i].Name" value="@Model[i].Name" />
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button class="btn btn-primary" type="submit">Role Ata</button>
+}

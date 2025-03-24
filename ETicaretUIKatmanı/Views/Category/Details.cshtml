@@ -1,0 +1,41 @@
+﻿@using ETicaretDataKatmanı.Entities;
+@model Category
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_LeyoutAdmin.cshtml";
+}
+
+
+@{
+    ViewData["Title"] = "Kategori Detayları";
+}
+
+<div class="container mt-5">
+    <h1>@ViewData["Title"]</h1>
+
+    @if (Model != null)
+    {
+        <div class="card">
+            <div class="card-header">
+                <h2>@Model.CategoryName</h2>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Kategori Detayları</h5>
+                <p><strong>Kategori ID:</strong> @Model.CategoryId</p>
+                <p><strong>Açıklama:</strong> @Model.Description</p>
+            </div>
+            <div class="card-footer text-end">
+                <a href="@Url.Action("Index", "Category")" class="btn btn-secondary">Geri Dön</a>
+                <a href="@Url.Action("Edit", "Category", new { id = Model.CategoryId })" class="btn btn-primary">Düzenle</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger mt-3" role="alert">
+            Kategori bulunamadı.
+        </div>
+    }
+</div>
+
+

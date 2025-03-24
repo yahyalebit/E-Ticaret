@@ -1,0 +1,19 @@
+﻿@using ETicaretDataKatmanı.Entities
+@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<header>
+    <div class="container py-2">
+        <h1>Welcome to ETicaret Demo</h1>
+        <p class="lead">This is a simple e-commerce website. You can see the products and add them to your cart.</p>
+    </div>
+    <div class="row row-cols-1 row row-cols-md-2 g-4">
+       @Html.Partial("_ProductList", Model)
+    </div>
+    <div class="row row-cols-1 row row-cols-md-2 g-4">
+		
+    </div>
+</header>
+

@@ -1,0 +1,65 @@
+﻿@using ETicaretDataKatmanı.ViewModels
+@model ShippingDetails
+@{
+    ViewData["Title"] = "CheckOut";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center mb-4">Sipariş Bilgileriniz</h1>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="text-primary mb-3">Lütfen sipariş bilgilerinizi doldurunuz</h2>
+            <hr />
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary()
+
+                <!-- Username -->
+                <div class="form-group row">
+                    <label for="inputUsername" class="col-sm-3 col-form-label font-weight-bold">Username</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="inputUsername" placeholder="Username" value="@User.Identity.Name" asp-for="UserName" aria-label="Username" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Adres Tanımı -->
+                <div class="form-group row">
+                    <label for="inputAddressTitle" class="col-sm-3 col-form-label font-weight-bold">Adres Tanımı</label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(x => x.AdressTitle, new { @class = "form-control", id = "inputAddressTitle", placeholder = "Adres Tanımınızı giriniz" })
+                        <span asp-validation-for="AdressTitle" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Adres -->
+                <div class="form-group row">
+                    <label for="inputAddress" class="col-sm-3 col-form-label font-weight-bold">Adres</label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(x => x.Address, new { @class = "form-control", id = "inputAddress", placeholder = "Adresinizi giriniz" })
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Şehir -->
+                <div class="form-group row">
+                    <label for="inputCity" class="col-sm-3 col-form-label font-weight-bold">Şehir</label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(x => x.City, new { @class = "form-control", id = "inputCity", placeholder = "Şehir giriniz" })
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                </div>
+                <br/>
+                <!-- Submit Button -->
+                <div class="form-group row">
+                    <div class="col-sm-9 offset-sm-3">
+                        <button type="submit" class="btn btn-primary btn-block">Siparişi Tamamla</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

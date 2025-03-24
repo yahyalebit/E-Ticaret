@@ -1,0 +1,38 @@
+﻿@using ETicaretDataKatmanı.Entities;
+@model Order
+@{
+    ViewData["Title"] = "Edit Order";
+    Layout = "~/Views/Shared/_LeyoutAdmin.cshtml";
+}
+
+<div class="container mt-4">
+    <h2>Edit Order</h2>
+
+    <!-- Hata Mesajlarını Göster -->
+    <div asp-validation-summary="All" class="alert alert-danger"></div>
+    <form asp-controller="Order" asp-action="Edit" method="post">
+        <input type="hidden" asp-for="OrderID" />
+        <input type="hidden" asp-for="AddressTitle" />
+
+        @if (Model.OrderLines != null)
+        {
+            @for (int i = 0; i < Model.OrderLines.Count; i++)
+            {
+                <input type="hidden" asp-for="OrderLines[i].ProductId" />
+                <input type="hidden" asp-for="OrderLines[i].OrderLineQuantity" />
+                <input type="hidden" asp-for="OrderLines[i].Product.Price" />
+            }
+        }
+
+        <!-- Onay Checkbox -->
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" asp-for="IsApproved" />
+            <label class="form-check-label">Approve Order</label>
+        </div>
+
+        <button type="submit" class="btn btn-success mt-3">Save Changes</button>
+        <a href="@Url.Action("Index", "Order")" class="btn btn-secondary mt-3">Cancel</a>
+    </form>
+</div>
+
+

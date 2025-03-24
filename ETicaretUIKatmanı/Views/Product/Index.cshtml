@@ -1,0 +1,87 @@
+﻿@using ETicaretDataKatmanı.Entities
+@model IEnumerable<Product>
+
+
+@{
+    ViewData["Title"] = "Ürün Listesi";
+    Layout = "~/Views/Shared/_LeyoutAdmin.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-primary">Ürün Listesi</h2>
+        <a asp-action="Create" class="btn btn-success">
+            <i class="fa-solid fa-plus"></i> Yeni Ürün Ekle
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Name)</th>
+                            <th>@Html.DisplayNameFor(model => model.category.CategoryName)</th>
+                            <th>Resim</th>
+                            <th>@Html.DisplayNameFor(model => model.Description)</th>
+                            <th>@Html.DisplayNameFor(model => model.Stock)</th>
+                            <th>@Html.DisplayNameFor(model => model.Price)</th>
+                            <th>@Html.DisplayNameFor(model => model.IsHome)</th>
+                            <th>@Html.DisplayNameFor(model => model.IsApproved)</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                <td>@Html.DisplayFor(modelItem => item.category.CategoryName)</td>
+                                <td>
+                                    <img src="@item.Image" class="img-thumbnail" style="max-width: 80px; height: auto;" alt="@item.Name">
+                                </td>
+                                <th>@Html.DisplayFor(modelItem => item.Description)</th>
+                                <td>@Html.DisplayFor(modelItem => item.Stock)</td>
+                                <td>@item.Price.ToString("c")</td>
+                                <td>
+                                    @if (item.IsHome)
+                                    {
+                                        <span class="badge bg-success">Evet</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">Hayır</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.IsApproved)
+                                    {
+                                        <span class="badge bg-success">Onaylı</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">Onaysız</span>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a asp-action="Edit" asp-route-id="@item.ProductId" class="btn btn-warning btn-sm">
+                                            <i class="fa-solid fa-pen-to-square"></i> Düzenle
+                                        </a>
+                                        <a asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-info btn-sm">
+                                            <i class="fa-solid fa-circle-info"></i> Detay
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.ProductId" class="btn btn-danger btn-sm">
+                                            <i class="fa-solid fa-trash"></i> Sil
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

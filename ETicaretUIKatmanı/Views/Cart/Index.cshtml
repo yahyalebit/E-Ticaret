@@ -1,0 +1,65 @@
+﻿@using ETicaretDataKatmanı.ViewModels
+@model IEnumerable<CartItem>
+@{
+    ViewData["Title"] = "Sepet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center text-primary">Sepet</h1>
+<hr />
+
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-warning text-center" role="alert">
+        <strong>Sepetiniz boş!</strong> Ürün eklemek için
+        <a href="@Url.Action("List", "Home")" class="alert-link">alışverişe devam edin</a>.
+    </div>
+}
+else
+{
+    <table class="table table-hover table-bordered table-striped text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>Ürün Adı</th>
+                <th>Birim Fiyat</th>
+                <th>Adet</th>
+                <th>Toplam</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>@string.Format(new System.Globalization.CultureInfo("tr-TR"), "{0:C}", item.Product.Price)</td>
+                    <td>
+                        <a class="btn btn-sm btn-danger" href="@Url.Action("DecreaseQuantity", "Cart", new { id = item.Product.ProductId })">-</a>
+                        <span class="mx-2">@item.Quantity</span>
+                        <a class="btn btn-sm btn-success" href="@Url.Action("IncreaseQuantity", "Cart", new { id = item.Product.ProductId })">+</a>
+                    </td>
+                    <td>@string.Format(new System.Globalization.CultureInfo("tr-TR"), "{0:C}", item.Product.Price * item.Quantity)</td>
+                    <td>
+                        <a class="btn btn-sm btn-danger" asp-action="Remove" asp-route-id="@item.Product.ProductId">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr class="table-info">
+                <td colspan="3" class="text-end"><strong>Toplam Tutar:</strong></td>
+                <td>
+                    <strong>
+                        @string.Format(new System.Globalization.CultureInfo("tr-TR"), "{0:C}", ViewBag.Total)
+                    </strong>
+                </td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+<div class="d-flex justify-content-between mt-4">
+    <a asp-action="List" asp-controller="Home" class="btn btn-outline-primary">🛍 Alışverişe Devam Et</a>
+    <a asp-action="CheckOut" asp-controller="Cart" class="btn btn-success">✅ Alışverişi Tamamla</a>
+</div>

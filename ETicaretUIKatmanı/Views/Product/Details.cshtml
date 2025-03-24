@@ -1,0 +1,47 @@
+﻿@model ETicaretDataKatmanı.Entities.Product
+
+@{
+    ViewData["Title"] = "Ürün Detayı";
+    Layout = "~/Views/Shared/_LeyoutAdmin.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Ürün Detayı</h2>
+
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white">
+            <h4>@Model.Name</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <!-- Ürün Resmi -->
+                <div class="col-md-6 text-center mb-3">
+                    <img src="@Model.Image" alt="@Model.Name" class="img-fluid rounded" style="max-height: 300px; object-fit: cover;" />
+                </div>
+
+                <!-- Ürün Bilgileri -->
+                <div class="col-md-6">
+                    <p><strong>Açıklama:</strong> @Model.Description</p>
+                    <p><strong>Fiyat:</strong> <span class="text-success">@Model.Price ₺</span></p>
+                    <p><strong>Stok:</strong> @Model.Stock</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer text-center">
+            <!-- Butonlar -->
+            <div class="btn-group" role="group">
+                <a asp-action="Index" class="btn btn-secondary btn-lg">
+                    <i class="fa-solid fa-arrow-left"></i> Geri Dön
+                </a>
+                <a asp-action="Edit" asp-route-id="@Model.ProductId" class="btn btn-primary btn-lg">
+                    <i class="fa-solid fa-pen-to-square"></i> Düzenle
+                </a>
+                <a asp-action="Delete" asp-route-id="@Model.ProductId" class="btn btn-danger btn-lg"
+                   onclick="return confirm('Bu ürünü silmek istediğinizden emin misiniz?');">
+                    <i class="fa-solid fa-trash"></i> Sil
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

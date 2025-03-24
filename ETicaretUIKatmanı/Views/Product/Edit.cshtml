@@ -1,0 +1,74 @@
+﻿@model ETicaretDataKatmanı.Entities.Product
+
+@{
+    ViewData["Title"] = "Ürün Detayı";
+    Layout = "~/Views/Shared/_LeyoutAdmin.cshtml";
+}
+
+@{
+    <h2 class="text-center text-primary">Ürünü Düzenle</h2>
+
+    <div class="card shadow p-4">
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="ProductId" />
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label fw-bold"></label>
+                <input asp-for="Name" class="form-control" placeholder="Ürün adını giriniz..." />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label fw-bold"></label>
+                <textarea asp-for="Description" class="form-control" rows="3" placeholder="Ürün açıklamasını giriniz..."></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Price" class="form-label fw-bold"></label>
+                    <input asp-for="Price" type="number" class="form-control" placeholder="Fiyatı giriniz..." />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Stock" class="form-label fw-bold"></label>
+                    <input asp-for="Stock" type="number" class="form-control" placeholder="Stok miktarını giriniz..." />
+                    <span asp-validation-for="Stock" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="CategoryId" class="form-label fw-bold">Kategori Seç</label>
+                <select asp-for="CategoryId" asp-items="@(ViewData["CategoryId"] as SelectList)" class="form-select">
+                    <option value="">Seçiniz...</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Image" class="form-label fw-bold">Ürün Resmi</label>
+                <input asp-for="Image" class="form-control" placeholder="Resim URL'sini giriniz..." />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+
+            <div class="form-check mb-2">
+                <input asp-for="IsApproved" class="form-check-input" />
+                <label asp-for="IsApproved" class="form-check-label">Onaylı mı?</label>
+            </div>
+
+            <div class="form-check mb-3">
+                <input asp-for="IsHome" class="form-check-input" />
+                <label asp-for="IsHome" class="form-check-label">Ana Sayfada Gösterilsin mi?</label>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-success w-50">Kaydet</button>
+                <a asp-action="Index" class="btn btn-secondary w-50 ms-2">İptal</a>
+            </div>
+        </form>
+    </div>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
